@@ -1,18 +1,22 @@
 {% extends "layoutDemo.html" %}
 {% block content %}
 <div id="app">
+
     <v-app id="inspire">
+
         <v-row justify="center">
             <v-card max-width="100%" elevation="2" style="margin: 50px 0px 50px 0px">
                 <v-card-title>
-                    <span class="headline">ข้อมูลการติดต่อ</span>
+                    <span class="headline" @click="test($event)">ข้อมูลการติดต่อ</span>
                 </v-card-title>
                 <v-card-text>
                     <v-container>
                         <p>โครงการ</p>
                         <v-row style="margin-top: -15px">
+
                             <v-col cols="6" sm="4">
                                 <v-select :items="items" required></v-select>
+
                             </v-col>
                             <v-col cols="6" sm="8">
                                 <v-text-field label="ชื่อโครงการ" type="text" disabled filled>
@@ -53,7 +57,9 @@
                         <v-row style="margin-top: -15px">
                             <v-col cols="6" sm="5">
                                 <p>ตั้งแต่วันที่</p>
+
                                 <v-menu ref="menuDateStart" v-model="menuDateStart" :close-on-content-click="false"
+
                                     :return-value.sync="pickDateStart" transition="scale-transition" offset-y
                                     min-width="290px">
                                     <template v-slot:activator="{ on, attrs }">
@@ -62,14 +68,17 @@
                                     </template>
                                     <v-date-picker v-model="pickDateStart" no-title scrollable>
                                         <v-spacer></v-spacer>
+
                                         <v-btn text color="primary" @click="menuDateStart = false">
                                             Cancel
                                         </v-btn>
                                         <v-btn text color="primary" @click="$refs.menuDateStart.save(pickDateStart)">
+
                                             OK
                                         </v-btn>
                                     </v-date-picker>
                                 </v-menu>
+
                             </v-col>
                             <v-col cols="6" sm="5">
                                 <p>เวลา</p>
@@ -85,15 +94,19 @@
                                     </v-time-picker>
                                 </v-menu>
                             </v-col>
+
                         </v-row>
                         <v-row style="margin-top: -15px">
                             <v-col cols="6" sm="5">
                                 <p>ถึงวันที่</p>
+
                                 <v-menu ref="menuDateEnd" v-model="menuDateEnd" :close-on-content-click="false"
+
                                     :return-value.sync="pickDateEnd" transition="scale-transition" offset-y
                                     min-width="290px">
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-text-field v-model="pickDateEnd" prepend-icon="mdi-calendar" readonly
+
                                             v-bind="attrs" v-on="on" style="margin-top: -20px">
                                         </v-text-field>
                                     </template>
@@ -103,12 +116,14 @@
                                             Cancel
                                         </v-btn>
                                         <v-btn text color="primary" @click="$refs.menuDateEnd.save(pickDateEnd)">
+
                                             OK
                                         </v-btn>
                                     </v-date-picker>
                                 </v-menu>
                             </v-col>
                             <v-col cols="6" sm="5">
+
                                 <p>เวลา</p>
                                 <v-menu ref="menuTimeEnd" v-model="menuTimeEnd" :close-on-content-click="false"
                                     :nudge-right="40" :return-value.sync="timeEnd" transition="scale-transition"
@@ -121,6 +136,7 @@
                                         @click:minute="$refs.menuTimeEnd.save(timeEnd)">
                                     </v-time-picker>
                                 </v-menu>
+
                             </v-col>
                         </v-row>
                         <v-spacer></v-spacer>
@@ -137,7 +153,9 @@
                 </v-card-actions>
             </v-card>
         </v-row>
+
         <v-row justify="center">
+
             <v-card max-width="100%" elevation="2" style="margin: 50px 0px 50px 0px">
                 <v-card-title>
                     <span class="headline">รายละเอียดการแจ้งซ่อม</span>
@@ -162,8 +180,9 @@
 </div>
 <script>
     new Vue({
-        el: '#app',
+        el:"#app",
         vuetify: new Vuetify(),
+
         data: () => ({
             items: ['007542017', '005672234', '003652192', '...'],
             menuDateStart: false,
@@ -180,8 +199,16 @@
         methods: {
 
         },
+
     })
 </script>
 
+<style>
+    @import "https://fonts.googleapis.com/css?family=Prompt";
+  
+    .font {
+      font-family: "Prompt", sans-serif;
+    }
+  </style>
 
 {% endblock %}

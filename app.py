@@ -5,12 +5,18 @@ app = Flask(__name__)
 
 
 @app.route('/')
-@app.route('/index')
+@app.route('/index', methods=["GET", "POST"])
 def index():
+
     return render_template('login.html')
 
-@app.route('/contact')
+
+@app.route('/contact', methods=["GET", "POST"])
 def contact():
    return render_template('formContact.html')
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5510)
