@@ -9,6 +9,10 @@ app = Flask(__name__)
 def index():
     return render_template('login.html')
 
+@app.route('/contact')
+def contact():
+   return render_template('formContact.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5510)

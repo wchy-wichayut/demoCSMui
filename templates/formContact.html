@@ -1,13 +1,109 @@
 {% extends "layoutDemo.html" %}
 {% block content %}
-<br><br><br>
-<div id='contact'>
+<div id="app">
     <v-app id="inspire">
-        <v-container fluid>
-            
-        </v-container>
+        <v-row justify="center" v-for="(n, i) in 4">
+            <v-card width="100%px" elevation="2" style="margin: 50px 0px 50px 0px">
+                <v-card-title>
+                    <span class="headline">ข้อมูลการติดต่อ</span>
+                </v-card-title>
+                <v-card-text>
+                    <v-container>
+                        <p>โครงการ</p>
+                        <v-row style="margin-top: -15px">
+                            <v-col cols="12" sm="4">
+                                <v-select :items="items" label="Plan" required outlined rounded>
+                                </v-select>
+                            </v-col>
+                            <v-col cols="12" sm="8">
+                                <v-text-field label="mappingPlan" type="text" disabled outlined rounded>
+                                </v-text-field>
+                            </v-col>
+                        </v-row>
+                        <div style="margin-top: -20px">
+                            <p>ลูกค้า (เจ้าของบ้าน)</p>
+                            <v-row style="margin-top: -15px">
+                                <v-col cols="12" sm="4">
+                                    <v-text-field label="รหัสลูกค้า" type="text" disabled outlined rounded>
+                                    </v-text-field>
+                                </v-col>
+                                <v-col cols="12" sm="8">
+                                    <v-text-field label="ชื่อลูกค้า" type="text" disabled outlined rounded>
+                                    </v-text-field>
+                                </v-col>
+                            </v-row>
+                        </div>
+                        <div style="margin-top: -20px">
+                            <p>ชื่อผู้แจ้งซ่อม</p>
+                            <v-row style="margin-top: -15px">
+                                <v-col cols="12" sm="8">
+                                    <v-radio-group style="margin-top: -2px">
+                                        <v-radio label="ลูกค้าเป็นผู้แจ้งเรื่องเอง" color="gray"></v-radio>
+                                        <v-icon slot="append">mdi-help-circle></v-icon>
+                                    </v-radio-group>
+
+                                    <br>
+                                    <v-text-field style="margin-top: -35px" type="text" outlined rounded></v-text-field>
+                                </v-col>
+                                <v-col cols="12" sm="4">
+                                    <p style="margin-left: 10px;">เบอร์โทรศัพท์</p>
+                                    <v-text-field type="text" outlined rounded> </v-text-field>
+                                </v-col>
+                            </v-row>
+                        </div>
+                        <p style="margin-top: -30px;">วันที่สะดวกให้เจ้าหน้าที่เข้าไปตรวจสอบ</p>
+                        <v-row style="margin-top: -15px">
+                            <v-col cols="12" sm="5">
+                                <p>ตั้งแต่วันที่</p>
+                                <v-text-field type="text" outlined rounded>
+                                </v-text-field>
+                            </v-col>
+                            <v-col cols="12" sm="5">
+                                <p style="margin-left: 5px">เวลา</p>
+                                <v-text-field type="text" outlined rounded>
+                                </v-text-field>
+                            </v-col>
+                        </v-row>
+                        <v-spacer></v-spacer>
+                        <v-col cols="12">
+                            <span class="headline" style="margin-left: -35px">รายละเอียดการแจ้งซ่อม</span>
+                            <p style="margin: 10px 0px 10px 0px;">เรื่อง</p>
+                            <v-text-field type="text" outlined rounded></v-text-field>
+                            <p style="margin: -10px 0px 10px 0px;">รายละเอียด</p>
+                            <v-text-field type="text" height="100px" outlined round></v-text-field>
+                            <v-text-field type="text" outlined rounded style="margin-top: -10px">
+                                <v-icon slot="prepend">mdi-image-size-select-actual</v-icon>
+                                <v-icon slot="prepend" style="margin-left: 5px;">mdi-camera</v-icon>
+                            </v-text-field>
+                        </v-col>
+
+                    </v-container>
+                    <!-- <small>indicates required field</small> -->
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="blue darken-1" text @click="dialog = false">
+                        Close
+                    </v-btn>
+                    <v-btn color="blue darken-1" text @click="dialog = false">
+                        Save
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-row>
     </v-app>
 </div>
+<script>
+    new Vue({
+        el: '#app',
+        vuetify: new Vuetify(),
+        data() {
+            return {
+                items: ['007542017', '005672234', '003652192', '...']
+            }
+        }
+    })
+</script>
 
 
 {% endblock %}
