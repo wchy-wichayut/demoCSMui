@@ -1,0 +1,61 @@
+{% extends "layoutDemo.html" %}
+{% block content %}
+<div id="app">
+    <v-app id="inspire">
+        <form method="POST" action="">
+            <v-row justify="center">
+                <v-card max-width="100%" width="600px" elevation="2" style="margin: 0px 0px 0px 0px">
+                    <v-card-text>
+                        <center>
+                            <div style="width: 50%; margin: 0px 0px 50px 24px">
+                                <v-img src="{{ url_for('static',filename='images/2-Mango.png') }}"></v-img>
+                            </div>
+                        </center>
+                        <v-container>
+                            <v-row>
+                                <v-col cols="12" xs="12" md="12">
+                                    <v-text-field type="text" label="ชื่อผู้ติดต่อ" outlined dense></v-text-field>
+                                </v-col>
+                                <v-col cols="12" xs="12" md="12">
+                                    <v-text-field type="text" label="ชื่อบริษัท" outlined dense
+                                        style="margin: -20px 0px 0px 0px;">
+                                    </v-text-field>
+                                </v-col>
+                                <v-col cols="12" xs="12" md="12">
+                                    <v-select :items="items" label="เลือกผลิตภัณฑ์ที่ท่านสนใจ" outlined dense
+                                        style="margin: -20px 0px 0px 0px;"></v-select>
+                                </v-col>
+                                <v-col cols="12" xs="12" md="12">
+                                    <v-text-field type="email" label="จดหมายอีเล็กทรอนิกส์" outlined dense
+                                        style="margin: -20px 0px 0px 0px;"></v-text-field>
+                                </v-col>
+                                <v-col cols="12" xs="12" md="12">
+                                    <v-text-field type="number" label="เบอร์ที่สะดวกให้เจ้าหน้าที่ติดต่อกลับ" outlined
+                                        dense style="margin: -20px 0px 0px 0px;"></v-text-field>
+                                </v-col>
+                                <v-col cols="12" xs="12" md="12">
+                                    <v-textarea type="text" label="รายละเอียดเพิ่มเติม" outlined dense
+                                        clear-icon="mdi-close-circle" auto-grow clearable
+                                        style="margin: -20px 0px 0px 0px;"></v-textarea>
+                                </v-col>
+                                <v-btn color="success" type="submit" block>Submit</v-btn>
+                            </v-row>
+                        </v-container>
+                    </v-card-text>
+                </v-card>
+            </v-row>
+        </form>
+    </v-app>
+</div>
+
+<script>
+    new Vue({
+        el: "#app",
+        vuetify: new Vuetify(),
+        data: () => ({
+            items: ['ERP Consulting', 'ERP Real Estate', 'Mobile App', 'Pusit ยืนกอดอก']
+        })
+    })
+</script>
+
+{% endblock %}

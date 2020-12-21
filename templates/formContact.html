@@ -1,9 +1,11 @@
 {% extends "layoutDemo.html" %}
 {% block content %}
-    <div id="app">
-        <v-app id="inspire" class="font">
+<div id="app">
+    <v-app id="inspire" class="font">
+        <form method="POST" action="">
             <v-row justify="center">
-                <v-card max-width="100%" width="700px" elevation="2" style="margin: 0px 0px 50px 0px">
+
+                <v-card max-width="100%" width="700px" elevation="2" style="margin: 0px 0px 10px 0px">
                     <v-card-title style="margin-left: 15px;">
                         <span class="font" style="font-weight: bolder">ข้อมูลการติดต่อ</span>
                     </v-card-title>
@@ -12,12 +14,12 @@
                             <p style="font-size: 17px; font-weight: bold">โครงการ</p>
                             <v-row style="margin-top: -15px">
                                 <v-col cols="5" xs="5" md="4">
-                                    <v-select :items="items" required></v-select>
+                                    <v-select placeholder="รหัสโครงการ" :items="items" required style="font-size: 14px">
+                                    </v-select>
                                 </v-col>
                                 <v-col cols="7" xs="7" md="8">
                                     <v-text-field value="ชื่อโครงการ" type="text"
-                                                  style="margin-top: -8px; font-size: 14px;"
-                                                  disabled filled>
+                                        style="margin-top: -8px; font-size: 14px;" disabled filled>
                                     </v-text-field>
                                 </v-col>
                             </v-row>
@@ -26,12 +28,12 @@
                                 <v-row style="margin-top: -15px">
                                     <v-col cols="5" xs="5" md="4">
                                         <v-text-field value="รหัสลูกค้า" type="text" disabled filled
-                                                      style="font-size: 14px;">
+                                            style="font-size: 14px;">
                                         </v-text-field>
                                     </v-col>
                                     <v-col cols="7" xs="7" md="8">
                                         <v-text-field value="ชื่อลูกค้า" type="text" disabled filled
-                                                      style="font-size: 14px;">
+                                            style="font-size: 14px;">
                                         </v-text-field>
                                     </v-col>
                                 </v-row>
@@ -48,37 +50,35 @@
                                         </v-row>
                                         <br>
                                         <v-text-field style="margin-top: -45px" type="text"
-                                                      placeholder="ชื่อผู้แจ้งซ่อม">
+                                            placeholder="ชื่อผู้แจ้งซ่อม">
                                         </v-text-field>
                                     </v-col>
                                     <v-col cols="5" xs="5" md="5">
                                         <p style="margin-left: 5px; font-size: 16px">เบอร์โทรศัพท์</p>
-                                        <v-text-field type="text" style="margin-top: -10px" placeholder="08x-xxx-xxxx">
+                                        <v-text-field type="number" style="margin-top: -10px"
+                                            placeholder="08x-xxx-xxxx">
                                         </v-text-field>
                                     </v-col>
                                 </v-row>
                             </div>
                             <p style="margin-top: -10px; font-size: 17px; font-weight: bold">
-                                [[date]]</p>
+                            </p>
                             <v-row style="margin-top: -15px">
                                 <v-col cols="5" xs="5" md="5">
                                     <p>ตั้งแต่วันที่</p>
                                     <v-menu ref="menuDateStart" v-model="menuDateStart" :close-on-content-click="false"
-                                            transition="scale-transition" offset-y
-                                            min-width="290px">
+                                        transition="scale-transition" offset-y min-width="290px">
                                         <template v-slot:activator="{ on, attrs }">
                                             <v-text-field v-model="pickDateStart" prepend-icon="mdi-calendar" readonly
-                                                          @blur="date = parseDate(pickDateStart)"
-                                                          v-bind="attrs" v-on="on"
-                                                          style="margin-top: -20px"></v-text-field>
+                                                @blur="date = parseDate(pickDateStart)" v-bind="attrs" v-on="on"
+                                                style="margin-top: -20px"></v-text-field>
                                         </template>
                                         <v-date-picker v-model="date" no-title scrollable locale="th">
                                             <v-spacer></v-spacer>
                                             <v-btn text color="primary" @click="menuDateStart = false">
                                                 Cancel
                                             </v-btn>
-                                            <v-btn text color="primary"
-                                                   @click="$refs.menuDateStart.save(date)">
+                                            <v-btn text color="primary" @click="$refs.menuDateStart.save(date)">
                                                 OK
                                             </v-btn>
                                         </v-date-picker>
@@ -88,16 +88,14 @@
                                 <v-col cols="5" xs="5" md="5">
                                     <p>เวลา</p>
                                     <v-menu ref="menuTimeStart" v-model="menuTimeStart" :close-on-content-click="false"
-                                            :nudge-right="40" :return-value.sync="timeStart"
-                                            transition="scale-transition"
-                                            offset-y max-width="290px" min-width="290px">
+                                        :nudge-right="40" :return-value.sync="timeStart" transition="scale-transition"
+                                        offset-y max-width="290px" min-width="290px">
                                         <template v-slot:activator="{ on, attrs }">
                                             <v-text-field v-model="timeStart" prepend-icon="mdi-clock-outline" readonly
-                                                          v-bind="attrs" v-on="on"
-                                                          style="margin-top: -20px;"></v-text-field>
+                                                v-bind="attrs" v-on="on" style="margin-top: -20px;"></v-text-field>
                                         </template>
                                         <v-time-picker v-if="menuTimeStart" v-model="timeStart" format="24hr" full-width
-                                                       @click:minute="$refs.menuTimeStart.save(timeStart)">
+                                            @click:minute="$refs.menuTimeStart.save(timeStart)">
                                         </v-time-picker>
                                     </v-menu>
                                 </v-col>
@@ -107,12 +105,11 @@
                                 <v-col cols="5" xs="5" md="5">
                                     <p>ถึงวันที่</p>
                                     <v-menu ref="menuDateEnd" v-model="menuDateEnd" :close-on-content-click="false"
-                                            transition="scale-transition" offset-y
-                                            min-width="290px">
+                                        transition="scale-transition" offset-y min-width="290px">
                                         <template v-slot:activator="{ on, attrs }">
                                             <v-text-field v-model="pickDateEnd" prepend-icon="mdi-calendar" readonly
-                                                           @blur="dateE = parseDate(pickDateEnd)"
-                                                          v-bind="attrs" v-on="on" style="margin-top: -20px">
+                                                @blur="dateE = parseDate(pickDateEnd)" v-bind="attrs" v-on="on"
+                                                style="margin-top: -20px">
                                             </v-text-field>
                                         </template>
                                         <v-date-picker v-model="dateE" no-title scrollable locale="th">
@@ -130,22 +127,20 @@
 
                                     <p>เวลา</p>
                                     <v-menu ref="menuTimeEnd" v-model="menuTimeEnd" :close-on-content-click="false"
-                                            :nudge-right="40" :return-value.sync="timeEnd" transition="scale-transition"
-                                            offset-y max-width="290px" min-width="290px">
+                                        :nudge-right="40" :return-value.sync="timeEnd" transition="scale-transition"
+                                        offset-y max-width="290px" min-width="290px">
                                         <template v-slot:activator="{ on, attrs }">
                                             <v-text-field v-model="timeEnd" prepend-icon="mdi-clock-outline" readonly
-                                                          v-bind="attrs" v-on="on"
-                                                          style="margin-top: -20px;"></v-text-field>
+                                                v-bind="attrs" v-on="on" style="margin-top: -20px;"></v-text-field>
                                         </template>
                                         <v-time-picker v-if="menuTimeEnd" v-model="timeEnd" format="24hr" full-width
-                                                       @click:minute="$refs.menuTimeEnd.save(timeEnd)">
+                                            @click:minute="$refs.menuTimeEnd.save(timeEnd)">
                                         </v-time-picker>
                                     </v-menu>
 
                                 </v-col>
                             </v-row>
                             <v-spacer></v-spacer>
-
                         </v-container>
                     </v-card-text>
                 </v-card>
@@ -154,7 +149,7 @@
 
             <v-row justify="center">
                 <v-card max-width="100%" width="700px" height="470px" max-height="100%" elevation="2"
-                        style="margin: -40px 0px 30px 0px;">
+                    style="margin: 0px 0px 30px 0px;">
                     <v-card-title style="margin: 0px 0px -25px 15px">
                         <span class="font" style="font-weight: bolder">รายละเอียดการแจ้งซ่อม</span>
                     </v-card-title>
@@ -185,67 +180,67 @@
                     </v-card-actions>
                 </v-col>
             </v-row>
+        </form>
+    </v-app>
+</div>
+<script>
+    new Vue({
+        el: "#app",
+        vuetify: new Vuetify(),
+        data: vm => ({
+            date: new Date().toISOString().substr(0, 10),
+            dateE: new Date().toISOString().substr(0, 10),
+            items: ['007542017', '005672234', '003652192', '...'],
+            timeStart: null,
+            timeEnd: null,
+            menuTimeStart: false,
+            menuTimeEnd: false,
+            menuDateStart: false,
+            menuDateEnd: false,
+            pickDateStart: vm.formatDate(new Date().toISOString().substr(0, 10)),
+            pickDateEnd: vm.formatDate(new Date().toISOString().substr(0, 10)),
 
-        </v-app>
-    </div>
-    <script>
-        new Vue({
-            el: "#app",
-            vuetify: new Vuetify(),
-            data: vm => ({
-                date: new Date().toISOString().substr(0, 10),
-                dateE: new Date().toISOString().substr(0, 10),
-                items: ['007542017', '005672234', '003652192', '...'],
-                timeStart: null,
-                timeEnd: null,
-                menuTimeStart: false,
-                menuTimeEnd: false,
-                menuDateStart: false,
-                menuDateEnd: false,
-                pickDateStart: vm.formatDate(new Date().toISOString().substr(0, 10)),
-                pickDateEnd: vm.formatDate(new Date().toISOString().substr(0, 10)),
+        }),
+        computed: {
+            computedDateFormatted() {
+                return this.formatDate(this.date)
+            },
+            computedDateFormatteds() {
+                return this.formatDate(this.dateE)
+            },
 
-            }),
-            computed: {
-                computedDateFormatted() {
-                    return this.formatDate(this.date)
-                },
-                computedDateFormatteds(){
-                    return this.formatDate(this.dateE)
-                },
+        },
+        watch: {
+            date(val) {
+                this.pickDateStart = this.formatDate(this.date)
 
             },
-            watch: {
-                date(val) {
-                    this.pickDateStart = this.formatDate(this.date)
-
-                },
-                dateE(val){
-                  this.pickDateEnd = this.formatDate(this.dateE)
-                },
+            dateE(val) {
+                this.pickDateEnd = this.formatDate(this.dateE)
             },
-            methods: {
-                formatDate(date) {
-                    if (!date) return null
-                    const [year, month, day] = date.split('-')
-                    return `${day}/${month}/${year}`
-                },
-                parseDate(date) {
-                    if (!date) return null
-                    const [day, month, year] = date.split('/')
-                    return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
-                },
+        },
+        methods: {
+            formatDate(date) {
+                if (!date) return null
+                const [year, month, day] = date.split('-')
+                return `${day}/${month}/${year}`
             },
-            delimiters: ["[[", "]]"],
-        })
-    </script>
+            parseDate(date) {
+                if (!date) return null
+                const [day, month, year] = date.split('/')
+                return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+            },
+        },
+        delimiters: ["[[", "]]"],
+    })
+</script>
 
-    <style>
-        @import "https://fonts.googleapis.com/css?family=Prompt";
+<style>
+    @import "https://fonts.googleapis.com/css?family=Prompt";
 
-        .font {
-            font-family: "Prompt", sans-serif;
-        }
-    </style>
+    .font {
+        font-family: "Prompt", sans-serif;
+    }
+</style>
 
 {% endblock %}
