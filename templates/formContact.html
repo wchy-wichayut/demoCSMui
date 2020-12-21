@@ -69,9 +69,8 @@
                                         <v-text-field v-model="pickDateStart" prepend-icon="mdi-calendar" readonly
                                             v-bind="attrs" v-on="on" style="margin-top: -20px"></v-text-field>
                                     </template>
-                                    <v-date-picker v-model="pickDateStart" no-title scrollable>
+                                    <v-date-picker v-model="pickDateStart" no-title scrollable locale="th">
                                         <v-spacer></v-spacer>
-
                                         <v-btn text color="primary" @click="menuDateStart = false">
                                             Cancel
                                         </v-btn>
@@ -109,7 +108,7 @@
                                             v-bind="attrs" v-on="on" style="margin-top: -20px">
                                         </v-text-field>
                                     </template>
-                                    <v-date-picker v-model="pickDateEnd" no-title scrollable>
+                                    <v-date-picker v-model="pickDateEnd" no-title scrollable locale="th">
                                         <v-spacer></v-spacer>
                                         <v-btn text color="primary" @click="menuDateEnd = false">
                                             Cancel
@@ -184,27 +183,67 @@
     new Vue({
         el: "#app",
         vuetify: new Vuetify(),
-        data: () => ({
+        data: vm => ({
             items: ['007542017', '005672234', '003652192', '...'],
-            menuDateStart: false,
-            menuDateEnd: false,
             timeStart: null,
             timeEnd: null,
             menuTimeStart: false,
             menuTimeEnd: false,
+            menuDateStart: false,
+            menuDateEnd: false,
             pickDateStart: new Date().toISOString().substr(0, 10),
-            pickDateEnd: new Date().toISOString().substr(0, 10)
+            pickDateEnd: new Date().toISOString().substr(0, 10),
+            
+
         }),
+        computed: {
+            computedDateFormattedStart() {
+                return this.formatDateStart(this.pickDateStart)
+            },
+            computedDateFormattedEnd() {
+                return this.formatDateEnd(this.pickDateEnd)
+            }
+        },
+        watch: {
+            pickDateStart(val) {
+                this.formattedStart = this.formatDateStart(this.pickDateStart)
+            },
+            pickDateEnd(val) {
+                this.formattedEnd = this.formatDateEnd(this.pickDateEnd)
+            }
+        },
         mounted() {
+
 
         },
         delimiters: ["[[", "]]"],
         methods: {
+            formatDate(pickDateStart) {
+                if (!pickDateStart) return null
 
+                const [year, month, day] = pickDateStart.split('-')
+                return `${day}/${month}/${year}`
+            },
+            formatDate(pickDateEnd) {
+                if (!pickDateEnd) return null
 
-        },
+                const [year, month, day] = pickDateEnd.split('-')
+                return `${day}/${month}/${year}`
+            },
+            parseDate(pickDateStart) {
+                if (!pickDateStart) return null
 
+                const [day, month, year] = pickDateStart.split('/')
+                return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+            },
+            parseDate(pickDateEnd) {
+                if (!pickDateEnd) return null
 
+                const [day, month, year] = pickDateEnd.split('/')
+                return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+            }
+
+        }
     })
 </script>
 
