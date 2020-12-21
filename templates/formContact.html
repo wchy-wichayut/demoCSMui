@@ -1,258 +1,251 @@
 {% extends "layoutDemo.html" %}
 {% block content %}
-<div id="app">
-    <v-app id="inspire" class="font">
-        <v-row justify="center">
-            <v-card max-width="100%" width="700px" elevation="2" style="margin: 0px 0px 50px 0px">
-                <v-card-title style="margin-left: 15px;">
-                    <span class="font" style="font-weight: bolder">ข้อมูลการติดต่อ</span>
-                </v-card-title>
-                <v-card-text>
-                    <v-container>
-                        <p style="font-size: 17px; font-weight: bold">โครงการ</p>
-                        <v-row style="margin-top: -15px">
-                            <v-col cols="5" xs="5" md="4">
-                                <v-select :items="items" required></v-select>
-                            </v-col>
-                            <v-col cols="7" xs="7" md="8">
-                                <v-text-field value="ชื่อโครงการ" type="text" style="margin-top: -8px; font-size: 14px;"
-                                    disabled filled>
-                                </v-text-field>
-                            </v-col>
-                        </v-row>
-                        <div style=" margin-top: -20px">
-                            <p style="font-size: 17px; font-weight: bold">ลูกค้า (เจ้าของบ้าน)</p>
+    <div id="app">
+        <v-app id="inspire" class="font">
+            <v-row justify="center">
+                <v-card max-width="100%" width="700px" elevation="2" style="margin: 0px 0px 50px 0px">
+                    <v-card-title style="margin-left: 15px;">
+                        <span class="font" style="font-weight: bolder">ข้อมูลการติดต่อ</span>
+                    </v-card-title>
+                    <v-card-text>
+                        <v-container>
+                            <p style="font-size: 17px; font-weight: bold">โครงการ</p>
                             <v-row style="margin-top: -15px">
                                 <v-col cols="5" xs="5" md="4">
-                                    <v-text-field value="รหัสลูกค้า" type="text" disabled filled
-                                        style="font-size: 14px;">
-                                    </v-text-field>
+                                    <v-select :items="items" required></v-select>
                                 </v-col>
                                 <v-col cols="7" xs="7" md="8">
-                                    <v-text-field value="ชื่อลูกค้า" type="text" disabled filled
-                                        style="font-size: 14px;">
+                                    <v-text-field value="ชื่อโครงการ" type="text"
+                                                  style="margin-top: -8px; font-size: 14px;"
+                                                  disabled filled>
                                     </v-text-field>
                                 </v-col>
                             </v-row>
-                        </div>
-                        <div style=" margin-top: -20px">
-                            <p style="font-size: 17px; font-weight: bold">ชื่อผู้แจ้งซ่อม</p>
+                            <div style=" margin-top: -20px">
+                                <p style="font-size: 17px; font-weight: bold">ลูกค้า (เจ้าของบ้าน)</p>
+                                <v-row style="margin-top: -15px">
+                                    <v-col cols="5" xs="5" md="4">
+                                        <v-text-field value="รหัสลูกค้า" type="text" disabled filled
+                                                      style="font-size: 14px;">
+                                        </v-text-field>
+                                    </v-col>
+                                    <v-col cols="7" xs="7" md="8">
+                                        <v-text-field value="ชื่อลูกค้า" type="text" disabled filled
+                                                      style="font-size: 14px;">
+                                        </v-text-field>
+                                    </v-col>
+                                </v-row>
+                            </div>
+                            <div style=" margin-top: -20px">
+                                <p style="font-size: 17px; font-weight: bold">ชื่อผู้แจ้งซ่อม</p>
+                                <v-row style="margin-top: -15px">
+                                    <v-col cols="7" xs="7" md="7">
+                                        <v-row>
+                                            <v-radio-group style="margin: -2px 0px 0px 5px;">
+                                                <v-radio label="ลูกค้าเป็นผู้แจ้งเรื่องเอง" color="gray" single-line>
+                                                </v-radio>
+                                            </v-radio-group>
+                                        </v-row>
+                                        <br>
+                                        <v-text-field style="margin-top: -45px" type="text"
+                                                      placeholder="ชื่อผู้แจ้งซ่อม">
+                                        </v-text-field>
+                                    </v-col>
+                                    <v-col cols="5" xs="5" md="5">
+                                        <p style="margin-left: 5px; font-size: 16px">เบอร์โทรศัพท์</p>
+                                        <v-text-field type="text" style="margin-top: -10px" placeholder="08x-xxx-xxxx">
+                                        </v-text-field>
+                                    </v-col>
+                                </v-row>
+                            </div>
+                            <p style="margin-top: -10px; font-size: 17px; font-weight: bold">
+                                [[date]]</p>
                             <v-row style="margin-top: -15px">
-                                <v-col cols="7" xs="7" md="7">
-                                    <v-row>
-                                        <v-radio-group style="margin: -2px 0px 0px 5px;">
-                                            <v-radio label="ลูกค้าเป็นผู้แจ้งเรื่องเอง" color="gray" single-line>
-                                            </v-radio>
-                                        </v-radio-group>
-                                    </v-row>
-                                    <br>
-                                    <v-text-field style="margin-top: -45px" type="text" placeholder="ชื่อผู้แจ้งซ่อม">
-                                    </v-text-field>
+                                <v-col cols="5" xs="5" md="5">
+                                    <p>ตั้งแต่วันที่</p>
+                                    <v-menu ref="menuDateStart" v-model="menuDateStart" :close-on-content-click="false"
+                                            transition="scale-transition" offset-y
+                                            min-width="290px">
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <v-text-field v-model="pickDateStart" prepend-icon="mdi-calendar" readonly
+                                                          @blur="date = parseDate(pickDateStart)"
+                                                          v-bind="attrs" v-on="on"
+                                                          style="margin-top: -20px"></v-text-field>
+                                        </template>
+                                        <v-date-picker v-model="date" no-title scrollable locale="th">
+                                            <v-spacer></v-spacer>
+                                            <v-btn text color="primary" @click="menuDateStart = false">
+                                                Cancel
+                                            </v-btn>
+                                            <v-btn text color="primary"
+                                                   @click="$refs.menuDateStart.save(date)">
+                                                OK
+                                            </v-btn>
+                                        </v-date-picker>
+                                    </v-menu>
+                                </v-col>
+
+                                <v-col cols="5" xs="5" md="5">
+                                    <p>เวลา</p>
+                                    <v-menu ref="menuTimeStart" v-model="menuTimeStart" :close-on-content-click="false"
+                                            :nudge-right="40" :return-value.sync="timeStart"
+                                            transition="scale-transition"
+                                            offset-y max-width="290px" min-width="290px">
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <v-text-field v-model="timeStart" prepend-icon="mdi-clock-outline" readonly
+                                                          v-bind="attrs" v-on="on"
+                                                          style="margin-top: -20px;"></v-text-field>
+                                        </template>
+                                        <v-time-picker v-if="menuTimeStart" v-model="timeStart" format="24hr" full-width
+                                                       @click:minute="$refs.menuTimeStart.save(timeStart)">
+                                        </v-time-picker>
+                                    </v-menu>
+                                </v-col>
+
+                            </v-row>
+                            <v-row style="margin-top: -15px">
+                                <v-col cols="5" xs="5" md="5">
+                                    <p>ถึงวันที่</p>
+                                    <v-menu ref="menuDateEnd" v-model="menuDateEnd" :close-on-content-click="false"
+                                            transition="scale-transition" offset-y
+                                            min-width="290px">
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <v-text-field v-model="pickDateEnd" prepend-icon="mdi-calendar" readonly
+                                                           @blur="dateE = parseDate(pickDateEnd)"
+                                                          v-bind="attrs" v-on="on" style="margin-top: -20px">
+                                            </v-text-field>
+                                        </template>
+                                        <v-date-picker v-model="dateE" no-title scrollable locale="th">
+                                            <v-spacer></v-spacer>
+                                            <v-btn text color="primary" @click="menuDateEnd = false">
+                                                Cancel
+                                            </v-btn>
+                                            <v-btn text color="primary" @click="$refs.menuDateEnd.save(dateE)">
+                                                OK
+                                            </v-btn>
+                                        </v-date-picker>
+                                    </v-menu>
                                 </v-col>
                                 <v-col cols="5" xs="5" md="5">
-                                    <p style="margin-left: 5px; font-size: 16px">เบอร์โทรศัพท์</p>
-                                    <v-text-field type="text" style="margin-top: -10px" placeholder="08x-xxx-xxxx">
-                                    </v-text-field>
+
+                                    <p>เวลา</p>
+                                    <v-menu ref="menuTimeEnd" v-model="menuTimeEnd" :close-on-content-click="false"
+                                            :nudge-right="40" :return-value.sync="timeEnd" transition="scale-transition"
+                                            offset-y max-width="290px" min-width="290px">
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <v-text-field v-model="timeEnd" prepend-icon="mdi-clock-outline" readonly
+                                                          v-bind="attrs" v-on="on"
+                                                          style="margin-top: -20px;"></v-text-field>
+                                        </template>
+                                        <v-time-picker v-if="menuTimeEnd" v-model="timeEnd" format="24hr" full-width
+                                                       @click:minute="$refs.menuTimeEnd.save(timeEnd)">
+                                        </v-time-picker>
+                                    </v-menu>
+
                                 </v-col>
                             </v-row>
-                        </div>
-                        <p style="margin-top: -10px; font-size: 17px; font-weight: bold">
-                            วันที่สะดวกให้เจ้าหน้าที่เข้าไปตรวจสอบ</p>
-                        <v-row style="margin-top: -15px">
-                            <v-col cols="5" xs="5" md="5">
-                                <p>ตั้งแต่วันที่</p>
+                            <v-spacer></v-spacer>
 
-                                <v-menu ref="menuDateStart" v-model="menuDateStart" :close-on-content-click="false"
-                                    :return-value.sync="pickDateStart" transition="scale-transition" offset-y
-                                    min-width="290px">
-                                    <template v-slot:activator="{ on, attrs }">
-                                        <v-text-field v-model="pickDateStart" prepend-icon="mdi-calendar" readonly
-                                            v-bind="attrs" v-on="on" style="margin-top: -20px"></v-text-field>
-                                    </template>
-                                    <v-date-picker v-model="pickDateStart" no-title scrollable locale="th">
-                                        <v-spacer></v-spacer>
-                                        <v-btn text color="primary" @click="menuDateStart = false">
-                                            Cancel
-                                        </v-btn>
-                                        <v-btn text color="primary" @click="$refs.menuDateStart.save(pickDateStart)">
-                                            OK
-                                        </v-btn>
-                                    </v-date-picker>
-                                </v-menu>
+                        </v-container>
+                    </v-card-text>
+                </v-card>
+            </v-row>
 
-                            </v-col>
-                            <v-col cols="5" xs="5" md="5">
-                                <p>เวลา</p>
-                                <v-menu ref="menuTimeStart" v-model="menuTimeStart" :close-on-content-click="false"
-                                    :nudge-right="40" :return-value.sync="timeStart" transition="scale-transition"
-                                    offset-y max-width="290px" min-width="290px">
-                                    <template v-slot:activator="{ on, attrs }">
-                                        <v-text-field v-model="timeStart" prepend-icon="mdi-clock-outline" readonly
-                                            v-bind="attrs" v-on="on" style="margin-top: -20px;"></v-text-field>
-                                    </template>
-                                    <v-time-picker v-if="menuTimeStart" v-model="timeStart" format="24hr" full-width
-                                        @click:minute="$refs.menuTimeStart.save(timeStart)">
-                                    </v-time-picker>
-                                </v-menu>
-                            </v-col>
 
-                        </v-row>
-                        <v-row style="margin-top: -15px">
-                            <v-col cols="5" xs="5" md="5">
-                                <p>ถึงวันที่</p>
-                                <v-menu ref="menuDateEnd" v-model="menuDateEnd" :close-on-content-click="false"
-                                    :return-value.sync="pickDateEnd" transition="scale-transition" offset-y
-                                    min-width="290px">
-                                    <template v-slot:activator="{ on, attrs }">
-                                        <v-text-field v-model="pickDateEnd" prepend-icon="mdi-calendar" readonly
-                                            v-bind="attrs" v-on="on" style="margin-top: -20px">
-                                        </v-text-field>
-                                    </template>
-                                    <v-date-picker v-model="pickDateEnd" no-title scrollable locale="th">
-                                        <v-spacer></v-spacer>
-                                        <v-btn text color="primary" @click="menuDateEnd = false">
-                                            Cancel
-                                        </v-btn>
-                                        <v-btn text color="primary" @click="$refs.menuDateEnd.save(pickDateEnd)">
-                                            OK
-                                        </v-btn>
-                                    </v-date-picker>
-                                </v-menu>
-                            </v-col>
-                            <v-col cols="5" xs="5" md="5">
+            <v-row justify="center">
+                <v-card max-width="100%" width="700px" height="470px" max-height="100%" elevation="2"
+                        style="margin: -40px 0px 30px 0px;">
+                    <v-card-title style="margin: 0px 0px -25px 15px">
+                        <span class="font" style="font-weight: bolder">รายละเอียดการแจ้งซ่อม</span>
+                    </v-card-title>
+                    <v-container fluid>
+                        <v-col cols="12" sm="12">
+                            <p style="margin: 10px 0px 10px 0px; font-weight: bold">เรื่อง</p>
+                            <v-text-field type="text" outlined rounded></v-text-field>
+                            <p style="margin: -10px 0px 10px 0px; font-weight: bold">รายละเอียด</p>
+                            <v-textarea type="text" clear-icon="mdi-close-circle" outlined auto-grow clearable>
+                            </v-textarea>
 
-                                <p>เวลา</p>
-                                <v-menu ref="menuTimeEnd" v-model="menuTimeEnd" :close-on-content-click="false"
-                                    :nudge-right="40" :return-value.sync="timeEnd" transition="scale-transition"
-                                    offset-y max-width="290px" min-width="290px">
-                                    <template v-slot:activator="{ on, attrs }">
-                                        <v-text-field v-model="timeEnd" prepend-icon="mdi-clock-outline" readonly
-                                            v-bind="attrs" v-on="on" style="margin-top: -20px;"></v-text-field>
-                                    </template>
-                                    <v-time-picker v-if="menuTimeEnd" v-model="timeEnd" format="24hr" full-width
-                                        @click:minute="$refs.menuTimeEnd.save(timeEnd)">
-                                    </v-time-picker>
-                                </v-menu>
-
-                            </v-col>
-                        </v-row>
-                        <v-spacer></v-spacer>
-
+                            <v-text-field type="text" outlined rounded style="margin-top: -5px" placeholder="Remark">
+                                <v-icon slot="prepend" size="32px">mdi-image-size-select-actual</v-icon>
+                                <v-icon slot="prepend" style="margin-left: 5px;" size="32px">mdi-camera</v-icon>
+                            </v-text-field>
+                        </v-col>
                     </v-container>
-                </v-card-text>
-            </v-card>
-        </v-row>
+                </v-card>
+            </v-row>
 
+            <v-row justify="center">
+                <v-col cols="12" xs="12" md="12">
+                    <p style="text-align: center; margin-top: -20px;">+ เพิ่มรายการแจ้งซ่อม</p>
+                    <v-card-actions>
+                        <v-btn class="white--text" color="#58D68D" elevation="2" block tile style="font-size: 16px">
+                            บันทึก
+                        </v-btn>
+                    </v-card-actions>
+                </v-col>
+            </v-row>
 
-        <v-row justify="center">
-            <v-card max-width="100%" width="700px" height="470px" max-height="100%" elevation="2"
-                style="margin: -40px 0px 30px 0px;">
-                <v-card-title style="margin: 0px 0px -25px 15px">
-                    <span class="font" style="font-weight: bolder">รายละเอียดการแจ้งซ่อม</span>
-                </v-card-title>
-                <v-container fluid>
-                    <v-col cols="12" sm="12">
-                        <p style="margin: 10px 0px 10px 0px; font-weight: bold">เรื่อง</p>
-                        <v-text-field type="text" outlined rounded></v-text-field>
-                        <p style="margin: -10px 0px 10px 0px; font-weight: bold">รายละเอียด</p>
-                        <v-textarea type="text" clear-icon="mdi-close-circle" outlined auto-grow clearable>
-                        </v-textarea>
+        </v-app>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            vuetify: new Vuetify(),
+            data: vm => ({
+                date: new Date().toISOString().substr(0, 10),
+                dateE: new Date().toISOString().substr(0, 10),
+                items: ['007542017', '005672234', '003652192', '...'],
+                timeStart: null,
+                timeEnd: null,
+                menuTimeStart: false,
+                menuTimeEnd: false,
+                menuDateStart: false,
+                menuDateEnd: false,
+                pickDateStart: vm.formatDate(new Date().toISOString().substr(0, 10)),
+                pickDateEnd: vm.formatDate(new Date().toISOString().substr(0, 10)),
 
-                        <v-text-field type="text" outlined rounded style="margin-top: -5px" placeholder="Remark">
-                            <v-icon slot="prepend" size="32px">mdi-image-size-select-actual</v-icon>
-                            <v-icon slot="prepend" style="margin-left: 5px;" size="32px">mdi-camera</v-icon>
-                        </v-text-field>
-                    </v-col>
-                </v-container>
-            </v-card>
-        </v-row>
+            }),
+            computed: {
+                computedDateFormatted() {
+                    return this.formatDate(this.date)
+                },
+                computedDateFormatteds(){
+                    return this.formatDate(this.dateE)
+                },
 
-        <v-row justify="center">
-            <v-col cols="12" xs="12" md="12">
-                <p style="text-align: center; margin-top: -20px;">+ เพิ่มรายการแจ้งซ่อม</p>
-                <v-card-actions>
-                    <v-btn class="white--text" color="#58D68D" elevation="2" block tile style="font-size: 16px">บันทึก
-                    </v-btn>
-                </v-card-actions>
-            </v-col>
-        </v-row>
-
-    </v-app>
-</div>
-<script>
-    new Vue({
-        el: "#app",
-        vuetify: new Vuetify(),
-        data: vm => ({
-            items: ['007542017', '005672234', '003652192', '...'],
-            timeStart: null,
-            timeEnd: null,
-            menuTimeStart: false,
-            menuTimeEnd: false,
-            menuDateStart: false,
-            menuDateEnd: false,
-            pickDateStart: new Date().toISOString().substr(0, 10),
-            pickDateEnd: new Date().toISOString().substr(0, 10),
-            
-
-        }),
-        computed: {
-            computedDateFormattedStart() {
-                return this.formatDateStart(this.pickDateStart)
             },
-            computedDateFormattedEnd() {
-                return this.formatDateEnd(this.pickDateEnd)
-            }
-        },
-        watch: {
-            pickDateStart(val) {
-                this.formattedStart = this.formatDateStart(this.pickDateStart)
+            watch: {
+                date(val) {
+                    this.pickDateStart = this.formatDate(this.date)
+
+                },
+                dateE(val){
+                  this.pickDateEnd = this.formatDate(this.dateE)
+                },
             },
-            pickDateEnd(val) {
-                this.formattedEnd = this.formatDateEnd(this.pickDateEnd)
-            }
-        },
-        mounted() {
-
-
-        },
-        delimiters: ["[[", "]]"],
-        methods: {
-            formatDate(pickDateStart) {
-                if (!pickDateStart) return null
-
-                const [year, month, day] = pickDateStart.split('-')
-                return `${day}/${month}/${year}`
+            methods: {
+                formatDate(date) {
+                    if (!date) return null
+                    const [year, month, day] = date.split('-')
+                    return `${day}/${month}/${year}`
+                },
+                parseDate(date) {
+                    if (!date) return null
+                    const [day, month, year] = date.split('/')
+                    return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+                },
             },
-            formatDate(pickDateEnd) {
-                if (!pickDateEnd) return null
+            delimiters: ["[[", "]]"],
+        })
+    </script>
 
-                const [year, month, day] = pickDateEnd.split('-')
-                return `${day}/${month}/${year}`
-            },
-            parseDate(pickDateStart) {
-                if (!pickDateStart) return null
+    <style>
+        @import "https://fonts.googleapis.com/css?family=Prompt";
 
-                const [day, month, year] = pickDateStart.split('/')
-                return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
-            },
-            parseDate(pickDateEnd) {
-                if (!pickDateEnd) return null
-
-                const [day, month, year] = pickDateEnd.split('/')
-                return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
-            }
-
+        .font {
+            font-family: "Prompt", sans-serif;
         }
-    })
-</script>
-
-<style>
-    @import "https://fonts.googleapis.com/css?family=Prompt";
-
-    .font {
-        font-family: "Prompt", sans-serif;
-    }
-</style>
+    </style>
 
 {% endblock %}
