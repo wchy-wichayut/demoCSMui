@@ -4,8 +4,7 @@
     <v-app id="inspire" class="font">
         <form method="POST" action="">
             <v-row justify="center">
-
-                <v-card max-width="100%" width="700px" elevation="2" style="margin: 0px 0px 10px 0px">
+                <v-card max-width="100%" width="700px" elevation="2">
                     <v-card-title style="margin-left: 15px;">
                         <span class="font" style="font-weight: bolder">ข้อมูลการติดต่อ</span>
                     </v-card-title>
@@ -62,6 +61,7 @@
                                 </v-row>
                             </div>
                             <p style="margin-top: -10px; font-size: 17px; font-weight: bold">
+                                วันที่สะดวกให้เจ้าหน้าที่เข้าไปตรวจสอบ
                             </p>
                             <v-row style="margin-top: -15px">
                                 <v-col cols="5" xs="5" md="5">
@@ -146,33 +146,38 @@
                 </v-card>
             </v-row>
 
+            <div class="addDetail" v-for="(addition, counter) in additions" v-bind:key="counter">
+                <v-row justify="center">
+                    <v-card max-width="100%" width="700px" height="470px" max-height="100%" elevation="2"
+                        style="margin: 10px 0px 0px 0px;">
+                        <v-card-title style="margin: 0px 0px -25px 15px">
+                            <span class="font" style="font-weight: bolder">รายละเอียดการแจ้งซ่อม</span>
+                        </v-card-title>
+                        <v-container fluid>
+                            <v-col cols="12" sm="12">
+                                <p style="margin: 10px 0px 10px 0px; font-weight: bold">
+                                    เรื่อง</p>
+                                <v-text-field v-model="addition.topic" type="text" outlined rounded></v-text-field>
+                                <p style="margin: -10px 0px 10px 0px; font-weight: bold">
+                                    รายละเอียด</p>
+                                <v-textarea v-model="addition.detail" type="text" clear-icon="mdi-close-circle" outlined
+                                    auto-grow clearable>
+                                </v-textarea>
+                                <v-text-field v-model="addition.remark" type="text" outlined rounded
+                                    style="margin-top: -5px" placeholder="Remark">
+                                    <v-icon slot="prepend" size="32px">mdi-image-size-select-actual</v-icon>
+                                    <v-icon slot="prepend" style="margin-left: 5px;" size="32px">mdi-camera</v-icon>
+                                </v-text-field>
+                            </v-col>
+                        </v-container>
+                    </v-card>
 
-            <v-row justify="center">
-                <v-card max-width="100%" width="700px" height="470px" max-height="100%" elevation="2"
-                    style="margin: 0px 0px 30px 0px;">
-                    <v-card-title style="margin: 0px 0px -25px 15px">
-                        <span class="font" style="font-weight: bolder">รายละเอียดการแจ้งซ่อม</span>
-                    </v-card-title>
-                    <v-container fluid>
-                        <v-col cols="12" sm="12">
-                            <p style="margin: 10px 0px 10px 0px; font-weight: bold">เรื่อง</p>
-                            <v-text-field type="text" outlined rounded></v-text-field>
-                            <p style="margin: -10px 0px 10px 0px; font-weight: bold">รายละเอียด</p>
-                            <v-textarea type="text" clear-icon="mdi-close-circle" outlined auto-grow clearable>
-                            </v-textarea>
-
-                            <v-text-field type="text" outlined rounded style="margin-top: -5px" placeholder="Remark">
-                                <v-icon slot="prepend" size="32px">mdi-image-size-select-actual</v-icon>
-                                <v-icon slot="prepend" style="margin-left: 5px;" size="32px">mdi-camera</v-icon>
-                            </v-text-field>
-                        </v-col>
-                    </v-container>
-                </v-card>
-            </v-row>
+                </v-row>
+            </div>
 
             <v-row justify="center">
                 <v-col cols="12" xs="12" md="12">
-                    <p style="text-align: center; margin-top: -20px;">+ เพิ่มรายการแจ้งซ่อม</p>
+                    <p style="text-align: center; margin-top: 10px;" @click="addDetail">+ เพิ่มรายการแจ้งซ่อม</p>
                     <v-card-actions>
                         <v-btn class="white--text" color="#58D68D" elevation="2" block tile style="font-size: 16px">
                             บันทึก
@@ -199,6 +204,11 @@
             menuDateEnd: false,
             pickDateStart: vm.formatDate(new Date().toISOString().substr(0, 10)),
             pickDateEnd: vm.formatDate(new Date().toISOString().substr(0, 10)),
+            additions: [{
+                topic: '',
+                detail: '',
+                remark: ''
+            }]
 
         }),
         computed: {
@@ -230,6 +240,13 @@
                 const [day, month, year] = date.split('/')
                 return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
             },
+            addDetail() {
+                this.additions.push({
+                    topic: '',
+                    detail: '',
+                    remark: ''
+                })
+            }
         },
         delimiters: ["[[", "]]"],
     })
