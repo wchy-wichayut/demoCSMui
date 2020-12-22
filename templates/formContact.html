@@ -54,8 +54,7 @@
                                     </v-col>
                                     <v-col cols="5" xs="5" md="5">
                                         <p style="margin-left: 5px; font-size: 16px">เบอร์โทรศัพท์</p>
-                                        <v-text-field type="number" style="margin-top: -10px"
-                                            placeholder="08x-xxx-xxxx">
+                                        <v-text-field type="tel" style="margin-top: -10px" placeholder="08x-xxx-xxxx">
                                         </v-text-field>
                                     </v-col>
                                 </v-row>
@@ -148,7 +147,7 @@
 
             <div class="addDetail" v-for="(addition, counter) in additions" v-bind:key="counter">
                 <v-row justify="center">
-                    <v-card max-width="100%" width="700px" height="470px" max-height="100%" elevation="2"
+                    <v-card max-width="100%" width="700px" max-height="100%" elevation="2"
                         style="margin: 10px 0px 0px 0px;">
                         <v-card-title style="margin: 0px 0px -25px 15px">
                             <span class="font" style="font-weight: bolder">รายละเอียดการแจ้งซ่อม</span>
@@ -165,9 +164,23 @@
                                 </v-textarea>
                                 <v-text-field v-model="addition.remark" type="text" outlined rounded
                                     style="margin-top: -5px" placeholder="Remark">
-                                    <v-icon slot="prepend" size="32px">mdi-image-size-select-actual</v-icon>
-                                    <v-icon slot="prepend" style="margin-left: 5px;" size="32px">mdi-camera</v-icon>
                                 </v-text-field>
+                                <v-row style="margin: -40px 0px 0px 0px">
+                                    <V-col cols="6" xs="4">
+                                        <v-file-input accept="image/png, image/jpeg, image/bmp" placeholder="Images"
+                                            show-size v-model="addition.img" prepend-icon="mdi-image-size-select-actual"
+                                            @change="Preview_image">
+                                        </v-file-input>
+                                        <v-img :src="Preview_image(addition.img)"></v-img>
+                                    </V-col>
+                                    <!-- <v-icon slot="prepend" size="32px">mdi-image-size-select-actual</v-icon> -->
+                                    <V-col cols="6" xs="4">
+                                        <v-file-input accept="image/png, image/jpeg, image/bmp" placeholder="Photo"
+                                            show-size prepend-icon="mdi-camera">
+                                        </v-file-input>
+                                    </V-col>
+                                </v-row>
+
                             </v-col>
                         </v-container>
                     </v-card>
@@ -176,8 +189,8 @@
             </div>
 
             <v-row justify="center">
+                <p style="text-align: center; margin: 20px 0px 0px 0px;" @click="addDetail">+ เพิ่มรายการแจ้งซ่อม</p>
                 <v-col cols="12" xs="12" md="12">
-                    <p style="text-align: center; margin-top: 10px;" @click="addDetail">+ เพิ่มรายการแจ้งซ่อม</p>
                     <v-card-actions>
                         <v-btn class="white--text" color="#58D68D" elevation="2" block tile style="font-size: 16px">
                             บันทึก
@@ -207,8 +220,10 @@
             additions: [{
                 topic: '',
                 detail: '',
-                remark: ''
-            }]
+                remark: '',
+                img: null
+            }],
+            url: null,
 
         }),
         computed: {
@@ -244,8 +259,12 @@
                 this.additions.push({
                     topic: '',
                     detail: '',
-                    remark: ''
+                    remark: '',
+                    img: null
                 })
+            },
+            Preview_image(value) {
+                this.url = URL.createObjectURL(value)
             }
         },
         delimiters: ["[[", "]]"],
