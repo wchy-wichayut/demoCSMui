@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Demo Deploy Mango</title>
+    <title>CSM Demo</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!--    <link rel="stylesheet" href="css/custom.css">-->
@@ -11,6 +11,7 @@
     <meta name="author" content="" />
     <!-- Custom fonts for this template-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
     <link href="{{ url_for('static',filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet"
@@ -32,9 +33,12 @@
     <script src="{{ url_for('static',filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url_for('static',filename='vendor/chart.js/Chart.min.js') }}"></script>
 
+    <!-- Line Liff -->
+    <script src="https://static.line-scdn.net/liff/edge/versions/2.3.0/sdk.js"></script>
+
 
     <!-- Core plugin JavaScript-->
-
+    
     <script src="{{ url_for('static',filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
@@ -66,7 +70,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>
 
-<body class="fixed-nav sticky-footer bg-white" id="page-top">
+<body id="page-top">
     <div id="wrapper">
         <!-- <nav class="navbar navbar-expand-sm navbar-dark fixed-top" id="layoutMain">
             <a class="navbar-brand" href="/index">
@@ -99,9 +103,9 @@
                 </ul>
             </div>
         </nav> -->
-        <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content-wrapper" >
             <!-- Main Content -->
-            <div id="content" class="fixed-nav sticky-footer bg-white">
+            <div id="content">
                 {% block content %}
                 {% endblock %}</div>
 
