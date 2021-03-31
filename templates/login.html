@@ -1,6 +1,4 @@
 {% extends "layoutDemo.html" %} {% block content %}
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Promt" />
-<br /><br /><br />
 <div id="login">
     <div class="container" style="text-align: center">
         <v-app id="inspire" class="font">
@@ -9,9 +7,9 @@
                     <v-img src="{{ url_for('static',filename='images/2-Mango.png') }}"></v-img>
                 </div>
             </center>
-
+ 
             <br /><br />
-            <p style="font-size: 19px;">ระบบแจ้งซ่อม</p>
+            <p style="font-size: 20px;">ระบบแจ้งซ่อม</p>
             <br />
             <form method="POST" action="">
                 <v-container fluid>
@@ -27,7 +25,6 @@
                         <v-checkbox v-model="checkbox" label="Remember Me" color="#55BC9F"></v-checkbox>
                     </div>
                     <br />
-
                     <v-card-actions style="margin-left: -7px">
                         <v-btn style="width: 165px; height: 50px" type="submit" color="#55BC9F" rounded dark>Sign in
                         </v-btn>
@@ -56,8 +53,6 @@
 </script>
 
 <style>
-    @import "https://fonts.googleapis.com/css?family=Prompt";
-
     .font {
         font-family: "Prompt", sans-serif;
     }

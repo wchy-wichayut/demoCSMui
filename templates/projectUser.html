@@ -1,0 +1,65 @@
+{% extends "layoutDemo.html" %} {% block content %}
+
+<div id="login">
+    <div class="container" style="text-align: center">
+        <v-app id="inspire" class="font">
+            <center>
+                <div style="width: 50%; margin-left: 24px">
+                    <v-img src="{{ url_for('static',filename='images/2-Mango.png') }}"></v-img>
+                </div>
+            </center>
+
+            <br /><br />
+            <p style="font-size: 20px;">เลือกโครงการ</p>
+            <br />
+            <form method="POST" action="">
+                <v-container fluid>
+                    <v-card-actions style="margin-left: -7px">
+                        <v-row>
+                            <v-col cols="12" xs="12" md="12">
+                                <v-btn color="white" elevation="2" width="100%" rounded style="font-size: 16px">
+                                    โครงการ บ้านร่มเย็น
+                                </v-btn>
+                            </v-col>
+                            <v-col cols="12" xs="12" md="12">
+                                <v-btn color="white" elevation="2" width="100%" rounded style="font-size: 16px">
+                                    โครงการ บ้านสุขสันต์
+                                </v-btn>
+                            </v-col>
+                            <v-col cols="12" xs="12" md="12">
+                                <v-btn color="white" elevation="2" width="100%" rounded style="font-size: 16px">
+                                    โครงการ เอมฤดี
+                                </v-btn>
+                            </v-col>
+                        </v-row>
+                    </v-card-actions>
+                </v-container>
+            </form>
+        </v-app>
+    </div>
+</div>
+
+<script>
+    new Vue({
+        el: "#login",
+        vuetify: new Vuetify(),
+        data() {
+            return {
+                idcard: false,
+                idcardtext: "รหัสบัตรประชาชน",
+                checkbox: false,
+                rules: {
+                    required: (value) => !!value || "Required.",
+                },
+            };
+        },
+    });
+</script>
+
+<style>
+    .font {
+        font-family: "Prompt", sans-serif;
+    }
+</style>
+
+{% endblock %}

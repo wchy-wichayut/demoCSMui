@@ -12,7 +12,7 @@
                                 append-icon="mdi-magnify" solo flat></v-text-field>
                         </v-col>
                     </v-app-bar>
-                    <v-app-bar color="orange" dense dark flat height="60px"
+                    <v-app-bar dense dark flat height="60px"
                         style="background: linear-gradient(to right , #80DEEA, #2979FF, #651FFF);">
                         <v-col cols="5" xs="5" md="5" style=" text-align: center">
                             <h1 style="font-size: 20px; font-weight: bold;">
@@ -33,8 +33,8 @@
                     </v-app-bar>
                 </div>
                 <v-row justify="center" style="margin: 10px 0px 0px 0px;">
-                    <v-card elevation="3">
-                        <v-card max-width="100%" width="400px" max-height="100%" height="260px">
+                    <v-card elevation="0">
+                        <v-card max-width="100%" width="400px" max-height="100%" height="300px" elevation="3">
                             <v-toolbar color="#E0E0E0" elevation="0" style="font-size: 18px; font-weight: bold; color: 
                             #616161; background: linear-gradient(to top right , #0091EA, #536DFE, #2196F3);" dark>
                                 ท่อน้ำชำรุด
@@ -85,8 +85,8 @@
                                 </v-row>
                             </v-card-text>
                         </v-card>
-                        <v-card max-width="100%" width="400px" max-height="100%" height="220px" style="margin-top: 12px"
-                            elevation="0" outlined>
+                        <v-card max-width="100%" width="400px" max-height="100%" height="260px" style="margin-top: 12px"
+                            elevation="3" outlined>
                             <!-- <v-toolbar color="#E0E0E0" elevation="0" style="font-size: 18px; font-weight: bold; color: 
                                 #616161; background: linear-gradient(to top right , #0091EA, #536DFE, #2196F3);" dark>
                             ท่อน้ำชำรุด
@@ -140,7 +140,7 @@
                         </v-card>
                     </v-card>
                     <v-card elevation="3" style="margin-top: 12px;">
-                        <v-card max-width="100%" width="400px" max-height="100%" height="260px">
+                        <v-card max-width="100%" width="400px" max-height="100%" height="300px">
                             <v-toolbar color="#E0E0E0" elevation="0"
                                 style="font-size: 18px; font-weight: bold; color: 
                                         #616161; background: linear-gradient(to top right , #FFA000, #FB8C00, #E65100);" dark>
@@ -193,10 +193,10 @@
                         </v-card>
                     </v-card>
                     <v-card elevation="3" style="margin-top: 12px;">
-                        <v-card max-width="100%" width="400px" max-height="100%" height="260px">
-                            <v-toolbar color="#E0E0E0" elevation="0"
-                                style="font-size: 18px; font-weight: bold; color: 
-                                    #616161; background: linear-gradient(to top right , #00E676, #00C853, #00BFA5);" dark>
+                        <v-card max-width="100%" width="400px" max-height="100%" height="300px">
+                            <v-toolbar color="#E0E0E0" elevation="0" style="font-size: 18px; font-weight: bold; color: 
+                                    #616161; background: linear-gradient(to top right , #00E676, #00C853, #00BFA5);"
+                                dark>
                                 ผนังร้าว
                             </v-toolbar>
                             <v-card-text>
@@ -231,7 +231,7 @@
                                 </v-row>
                                 <v-row>
                                     <v-col cols="5" xs="5" md="5" style="margin: -20px 0px 0px 0px">
-                                        <v-rating v-model="rating3" background-color="red" color="red" hover
+                                        <v-rating v-model="rating3" background-color="grey lighten-1" color="red" hover
                                             empty-icon="mdi-heart-circle" full-icon="mdi-heart-circle"
                                             half-icon="mdi-heart-circle" length="1" size="45" value="1"
                                             style="margin: -20px 0px 0px 50px">
@@ -265,7 +265,7 @@
             rating: 0,
             rating1: 0,
             rating2: 0,
-            rating3: 0
+            rating3: 1
         })
     })
 </script>

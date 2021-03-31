@@ -1,0 +1,189 @@
+{% extends "layoutDemo.html" %}
+{% block content %}
+
+<div id="app">
+    <v-app id="inspire" class="font">
+        <v-row justify="center">
+            <v-card max-width="100%" width="600px" height="100%" elevation="3" style="margin-top: 12px;">
+                <div>
+                    <v-app-bar color="orange" dense flat height="60px"
+                        style="background: linear-gradient(to right , #80DEEA, #2979FF, #651FFF);">
+                        <v-col cols="12" xs="12" md="12">
+                            <v-text-field label="เลขที่งานซ่อม" style="margin-top: 34px;" placeholder="เลขที่งานซ่อม"
+                                append-icon="mdi-magnify" solo flat></v-text-field>
+                        </v-col>
+                    </v-app-bar>
+                    <v-app-bar dense dark flat height="60px"
+                        style="background: linear-gradient(to right , #80DEEA, #2979FF, #651FFF);">
+                        <v-col cols="11" xs="11" md="11" style=" text-align: center">
+                            <h1 style="font-size: 22px; font-weight: bold;">
+                                ประเมิน
+                            </h1>
+                        </v-col>
+
+                        <v-col cols="1" xs="1" md="1" style="margin-left: -25px">
+                            <v-avatar color="indigo" size="40">
+                                <v-icon dark>
+                                    mdi-account-circle
+                                </v-icon>
+                            </v-avatar>
+                        </v-col>
+                    </v-app-bar>
+                </div>
+                <v-row justify="center" style="margin: 10px 0px 0px 0px">
+                    <v-card max-width="100%" width="580px" max-height="100%" elevation="0">
+                        <v-row justify="center">
+                            <v-col cols="7" xs="7" md="7">
+                                <p style="font-size: 16px; font-weight: bold; text-align: start; margin: 0px 0px 0px 12px">
+                                    Draft 0904588
+                                </p>
+                            </v-col>
+                            <v-col cols="5" xs="5" md="5">
+                                <p style="font-size: 16px; text-align: end; margin: 0px 15px 0px 0px ">
+                                    ปิดงาน: 02/12/2020
+                                </p>
+                            </v-col>
+                        </v-row>
+                        <v-row style="margin: -15px 0px 0px 0px;">
+                            <v-col cols="12" xs="12" md="12">
+                                <p>ท่อน้ำแตกหลังบ้าน มาซ่อมหน่อย</p>
+                            </v-col>
+                        </v-row>
+                        <v-row style="margin: -20px 0px 0px 0px;">
+                            <v-col cols="12" xs="12" md="12">
+                                <v-divider class="mx-4"></v-divider>
+                            </v-col>
+                        </v-row>
+                        <v-row style="margin: -15px 5px 0px 0px; font-size: 16px;">
+                            <v-col cols="12" xs="12" md="12">
+                                <p style="margin-left: 5px">1. งานซ่อมแก้ไขเรียบร้อยใช้งานได้ตามปกติ</p>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col cols="12" xs="12" md="12" style="margin: -40px 0px 0px 0px; text-align: center;">
+                                <v-rating v-model="rating" background-color="grey lighten-1" color="red" hover
+                                    empty-icon="mdi-heart-circle" full-icon="mdi-heart-circle"
+                                    half-icon="mdi-heart-circle" length="5" size="45" value="5">
+                                </v-rating>
+                        </v-row>
+                        <v-row>
+                            <v-col cols="4" xs="4" md="4">
+                                <p style="font-size: 16px; color: gray; margin: 15px 0px 0px 20px;">ข้อเสนอแนะ:</p>
+                            </v-col>
+                            <v-col cols="8" xs="8" md="8">
+                                <v-text-field
+                                    type="text"
+                                    v-model="comment"
+                                    outlined
+                                    rounded
+                                    style="margin: 0px 10px 0px -15px ; text-align: start"
+                                ></v-text-field>
+                            </v-col>
+                        </v-row>
+                    </v-card>
+
+                    <v-card max-width="100%" width="580px" max-height="100%" elevation="0">
+                        <v-row style="margin: -20px 0px 0px 0px;">
+                            <v-col cols="12" xs="12" md="12">
+                                <v-divider class="mx-4"></v-divider>
+                            </v-col>
+                        </v-row>
+                        <v-row style="margin: -15px 5px 0px 0px; font-size: 16px;">
+                            <v-col cols="12" xs="12" md="12">
+                                <p style="margin-left: 5px;">2. เจ้าหน้าที่ให้คำแนะนำหลังจากงานซ่อม</p>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col cols="12" xs="12" md="12" style="margin: -40px 0px 0px 0px; text-align: center;">
+                                <v-rating v-model="rating1" background-color="grey lighten-1" color="red" hover
+                                    empty-icon="mdi-heart-circle" full-icon="mdi-heart-circle"
+                                    half-icon="mdi-heart-circle" length="5" size="45" value="5">
+                                </v-rating>
+                        </v-row>
+                        <v-row>
+                            <v-col cols="4" xs="4" md="4">
+                                <p style="font-size: 16px; color: gray; margin: 15px 0px 0px 20px;">ข้อเสนอแนะ:</p>
+                            </v-col>
+                            <v-col cols="8" xs="8" md="8">
+                                <v-text-field
+                                    type="text"
+                                    v-model="comment1"
+                                    outlined
+                                    rounded
+                                    style="margin: 0px 10px 0px -15px ; text-align: start"
+                                    placeholder="ช่างรีบกลับไปหน่อย"
+                                ></v-text-field>
+                            </v-col>
+                        </v-row>
+                    </v-card>
+
+                    <v-card max-width="100%" width="580px" max-height="100%" elevation="0">
+                        <v-row style="margin: -20px 0px 0px 0px;">
+                            <v-col cols="12" xs="12" md="12">
+                                <v-divider class="mx-4"></v-divider>
+                            </v-col>
+                        </v-row>
+                        <v-row style="margin: -15px 0px 0px 0px; font-size: 16px;">
+                            <v-col cols="12" xs="12" md="12">
+                                <p style="margin-left: 5px;">3. ความสะอาดในบริเวณสถานที่ซ่อม เก็บงานเรียบร้อย ไม่ทิ้งเศษขยะรอบๆบริเวณ</p>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col cols="12" xs="12" md="12" style="margin: -40px 0px 0px 0px; text-align: center;">
+                                <v-rating v-model="rating2" background-color="grey lighten-1" color="red" hover
+                                    empty-icon="mdi-heart-circle" full-icon="mdi-heart-circle"
+                                    half-icon="mdi-heart-circle" length="5" size="45" value="5">
+                                </v-rating>
+                        </v-row>
+                        <v-row>
+                            <v-col cols="4" xs="4" md="4">
+                                <p style="font-size: 16px; color: gray; margin: 15px 0px 0px 20px;">ข้อเสนอแนะ:</p>
+                            </v-col>
+                            <v-col cols="8" xs="8" md="8">
+                                <v-text-field
+                                    type="text"
+                                    v-model="comment2"
+                                    outlined
+                                    rounded
+                                    style="margin: 0px 10px 0px -15px ; text-align: start"
+                                    placeholder="ช่างรีบกลับไปหน่อย"
+                                ></v-text-field>
+                            </v-col>
+                        </v-row>
+                    </v-card>
+                </v-row>
+                <v-row justify="center">
+                    <v-col cols="12" xs="12" md="12">
+                        <v-card-actions>
+                            <v-btn class="white--text" color="#00008B" elevation="2" block tile style="font-size: 16px">
+                                บันทึก
+                            </v-btn>
+                        </v-card-actions>
+                    </v-col>
+                </v-row>
+            </v-card>
+
+        </v-row>
+    </v-app>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        vuetify: new Vuetify(),
+        data: () => ({
+            rating: 3,
+            rating1: 1,
+            rating2: 1,
+            comment: '',
+            comment1: '',
+            comment2: ''
+        })
+    })
+</script>
+<style>
+    .font {
+        font-family: "Prompt", sans-serif;
+    }
+</style>
+{% endblock %}

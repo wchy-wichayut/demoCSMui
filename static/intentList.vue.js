@@ -25,8 +25,7 @@ const IntentList = {
         // keywords passed as query - as-is.
         // verify whether server requires any specific format
         const res = await axios.get(
-          `${this.urls.postget}?query=${this.keywords}&page=${
-            this.currentPage + 1
+          `${this.urls.postget}?query=${this.keywords}&page=${this.currentPage + 1
           }`,
           {
             crossdomain: true,

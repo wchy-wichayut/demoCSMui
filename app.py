@@ -10,6 +10,13 @@ app = Flask(__name__)
 def index():
     return render_template('login.html')
 
+@app.route('/regis', methods=["GET", "POST"])
+def regis():
+   return render_template('register.html')
+
+@app.route('/project')
+def project():
+   return render_template('projectUser.html')
 
 @app.route('/contact', methods=["GET", "POST"])
 def contact():
@@ -20,29 +27,11 @@ def contact():
 def status():
    return render_template('statusView.html')
 
-
-@app.route('/post_data')
-def post_data():
-    post_data = request.get_json()
-    print(post_data)
+@app.route('/rating')
+def rating():
+   return render_template('evaluateWork.html')
 
 
-@app.route('/liff_contact')
-def liff_contact():
-   return render_template('/line_liff/lineLiffContact.html')
-
-
-@app.route('/test_login')
-def test_login():
-   return render_template('/line_liff/loginTest.html')
-
-
-@app.route('/sdata', methods=['GET', 'POST']) 
-def sdata():
-    if request.method == 'POST':
-        sdata = request.get_json()
-        print(sdata)
-        return make_response(sdata)
 
 
 if __name__ == '__main__':
